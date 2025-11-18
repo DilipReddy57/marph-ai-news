@@ -14,9 +14,9 @@ from datetime import datetime, timedelta
 import pytz
 import xml.etree.ElementTree as ET
 
-# Telegram Configuration
-TELEGRAM_BOT_TOKEN = "8283610283:AAHJqg9AexBYFm15v-eWV39Pe8wC8gKnQP8"
-TELEGRAM_CHAT_ID = "939907290"
+# Telegram Configuration (from environment variables for security)
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 def fetch_rss_feed(url, max_items=5):
     """Fetch and parse RSS feed"""
@@ -398,6 +398,14 @@ def main():
     print("=" * 75)
     print(f"Execution: {datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%Y-%m-%d %I:%M %p %Z')}")
     print()
+
+    # Validate environment variables
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("❌ ERROR: Missing required environment variables!")
+        print("   Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID")
+        print("   For GitHub Actions: Add as repository secrets")
+        print("   For local: export TELEGRAM_BOT_TOKEN='your-token'")
+        return
 
     try:
         # Step 1: Collect news

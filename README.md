@@ -34,10 +34,14 @@ Automated daily AI news aggregator that collects, summarizes, and delivers compr
 
 ### Configuration
 
-The bot is already configured with:
-- **Bot Token**: `8283610283:AAHJqg9AexBYFm15v-eWV39Pe8wC8gKnQP8`
-- **Chat ID**: `939907290`
+**⚠️ SECURITY**: Bot credentials are stored securely in environment variables.
+
+You need to configure:
+- **Bot Token**: Set as `TELEGRAM_BOT_TOKEN` (GitHub Secret or environment variable)
+- **Chat ID**: Set as `TELEGRAM_CHAT_ID` (GitHub Secret or environment variable)
 - **Schedule**: Daily at 9:00 PM IST (15:30 UTC)
+
+**See [SECURITY_SETUP.md](SECURITY_SETUP.md) for detailed instructions.**
 
 ### Installation
 

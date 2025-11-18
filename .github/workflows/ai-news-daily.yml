@@ -26,6 +26,9 @@ jobs:
           pip install pytz
 
       - name: Run AI News Collection
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python ai_news_complete.py
 
