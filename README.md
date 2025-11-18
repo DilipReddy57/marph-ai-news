@@ -1,6 +1,8 @@
-# 🤖 AI News Relay Agent
+# 🤖 AI News Relay Agent (FREE Edition)
 
 Automated daily AI news aggregator that collects, summarizes, and delivers comprehensive AI updates to your Telegram account.
+
+**✨ 100% FREE - NO API KEYS REQUIRED!** Uses free RSS feeds and public APIs only.
 
 ## ✨ Features
 
@@ -28,7 +30,7 @@ Automated daily AI news aggregator that collects, summarizes, and delivers compr
 - Python 3.11+
 - Telegram Bot Token
 - Telegram Chat ID
-- Anthropic API Key (for web searches)
+- **NO OTHER API KEYS NEEDED!** (100% Free)
 
 ### Configuration
 
@@ -44,8 +46,8 @@ The bot is already configured with:
 git clone https://github.com/YOUR_USERNAME/ai-news-relay-agent.git
 cd ai-news-relay-agent
 
-# Install dependencies
-pip install requests anthropic pytz
+# Install dependencies (only pytz needed!)
+pip install pytz
 
 # Run manually
 python ai_news_complete.py
@@ -67,13 +69,9 @@ git branch -M main
 git push -u origin main
 ```
 
-### 2. Configure Secrets
+### 2. No Secrets Needed!
 
-Go to your GitHub repository → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
-
-Add the following secret:
-- **Name**: `ANTHROPIC_API_KEY`
-- **Value**: Your Anthropic API key
+**This is the free version - no API keys required!** The workflow is ready to run immediately after enabling.
 
 ### 3. Enable GitHub Actions
 
@@ -98,10 +96,9 @@ ai-news-relay-agent/
 
 ## 🔧 Manual Execution
 
-Run the script anytime:
+Run the script anytime (no API keys needed):
 
 ```bash
-export ANTHROPIC_API_KEY="your-key-here"
 python ai_news_complete.py
 ```
 
