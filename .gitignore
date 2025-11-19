@@ -1,2 +1,15 @@
 # Ignore sensitive files
 .env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Logs and summaries
+logs/
+summaries/

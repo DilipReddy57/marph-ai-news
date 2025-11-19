@@ -1,209 +1,129 @@
-# 🤖 AI News Relay Agent (FREE Edition)
+# 🤖 AI News Relay Agent
 
-Automated daily AI news aggregator that collects, summarizes, and delivers comprehensive AI updates to your Telegram account.
-
-**✨ 100% FREE - NO API KEYS REQUIRED!** Uses free RSS feeds and public APIs only.
+A professional, modular Python application that collects daily AI news from multiple sources and delivers comprehensive digests to Telegram.
 
 ## ✨ Features
 
-- **📰 Multi-Source News Collection**: Aggregates from 10+ AI sources including OpenAI, Google, Meta, Microsoft
-- **🎯 Smart Categorization**: Organizes news into Breakthroughs, Products, Research, Funding, Jobs, Policy
-- **🌍 Regional Coverage**: Separate tracking for India and US funding/opportunities
-- **📱 Telegram Delivery**: Direct delivery to your Telegram with formatted digest (4000+ characters)
-- **⏰ Automated Scheduling**: Runs daily at 9 PM IST via GitHub Actions
-- **💾 Backup System**: Saves all digests to `/workspace/summaries/`
-- **📊 Execution Logging**: Tracks all runs in `/workspace/logs/`
-
-## 📋 News Categories
-
-1. **🚀 Breakthrough Developments** - Major AI model releases, breakthroughs
-2. **⚡ New Products & Tools** - Product launches, feature updates
-3. **📚 Research Highlights** - Academic papers, research advances
-4. **💰 Funding & Investments** - Startup funding (India & US separately)
-5. **💼 AI Job Opportunities** - Hiring announcements from major companies
-6. **⚖️ Policy & Regulation** - Government policies, regulations
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.11+
-- Telegram Bot Token
-- Telegram Chat ID
-- **NO OTHER API KEYS NEEDED!** (100% Free)
-
-### Configuration
-
-**⚠️ SECURITY**: Bot credentials are stored securely in environment variables.
-
-You need to configure:
-- **Bot Token**: Set as `TELEGRAM_BOT_TOKEN` (GitHub Secret or environment variable)
-- **Chat ID**: Set as `TELEGRAM_CHAT_ID` (GitHub Secret or environment variable)
-- **Schedule**: Daily at 9:00 PM IST (15:30 UTC)
-
-**See [SECURITY_SETUP.md](SECURITY_SETUP.md) for detailed instructions.**
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/ai-news-relay-agent.git
-cd ai-news-relay-agent
-
-# Install dependencies (only pytz needed!)
-pip install pytz
-
-# Run manually
-python ai_news_complete.py
-```
-
-## ⚙️ GitHub Actions Setup
-
-### 1. Create GitHub Repository
-
-```bash
-# Initialize git (if not already done)
-git init
-git add .
-git commit -m "Initial commit: AI News Relay Agent"
-
-# Add remote and push
-git remote add origin https://github.com/YOUR_USERNAME/ai-news-relay-agent.git
-git branch -M main
-git push -u origin main
-```
-
-### 2. No Secrets Needed!
-
-**This is the free version - no API keys required!** The workflow is ready to run immediately after enabling.
-
-### 3. Enable GitHub Actions
-
-1. Go to **Actions** tab in your repository
-2. Enable workflows if prompted
-3. The workflow will run automatically at 9 PM IST daily
-4. You can also trigger manually using "Run workflow" button
+- **100% FREE**: No paid APIs required
+- **Modular Architecture**: Clean separation of concerns
+- **Robust**: Uses `requests` and `feedparser` for reliable data fetching
+- **Type-Safe**: Pydantic models for configuration and data validation
+- **Automated**: GitHub Actions workflow for daily 9 PM IST delivery
+- **Extensible**: Easy to add new news sources
 
 ## 📁 Project Structure
 
 ```
-ai-news-relay-agent/
-├── ai_news_complete.py          # Main script
-├── .github/
-│   └── workflows/
-│       └── ai-news-daily.yml    # GitHub Actions workflow
-├── summaries/                   # Backup digests (created on first run)
-├── logs/                        # Execution logs (created on first run)
-├── README.md                    # This file
-└── requirements.txt             # Python dependencies
+marph-ai-news/
+├── src/
+│   └── ai_news_relay/
+│       ├── __init__.py
+│       ├── config.py       # Configuration management (Pydantic)
+│       ├── models.py       # Data structures (Article)
+│       ├── collectors.py   # News fetching (RSS, APIs)
+│       ├── generator.py    # Markdown digest generation
+│       ├── publisher.py    # Telegram integration
+│       └── utils.py        # Logging utilities
+├── .vscode/                # VS Code configuration
+├── main.py                 # Entry point
+├── requirements.txt        # Dependencies
+└── .env.example           # Environment template
 ```
 
-## 🔧 Manual Execution
+## 🚀 Quick Start
 
-Run the script anytime (no API keys needed):
+### 1. Install Dependencies
 
 ```bash
-python ai_news_complete.py
+pip install -r requirements.txt
 ```
 
-## 📊 Output Format
+### 2. Configure Environment
 
-The digest includes:
-- **Character Target**: 4000+ characters (max 4090 for Telegram limit)
-- **Format**: Markdown with clickable links
-- **Sections**: 6 main categories with multiple articles each
-- **Footer**: Key insights and next update time
+Create a `.env` file in the project root:
 
-### Example Output
-
-```
-🤖 AI NEWS DAILY DIGEST
-📅 November 18, 2025
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🚀 BREAKTHROUGH DEVELOPMENTS
-
-1. OpenAI releases GPT-5.1 with reasoning capabilities
-   New model shows 40% improvement in complex reasoning...
-   🔗 https://openai.com/gpt-5-1
-
-...
-
-💰 FUNDING & INVESTMENTS
-
-🇮🇳 India:
-1. Sarvam AI secures $41M funding...
-
-🇺🇸 United States:
-1. Cohere raises $500M Series D...
-
-...
+```env
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
 ```
 
-## 🛠️ Customization
+### 3. Run Locally
 
-### Change Schedule
-
-Edit `.github/workflows/ai-news-daily.yml`:
-
-```yaml
-schedule:
-  - cron: '30 15 * * *'  # Change this
+```bash
+python main.py
 ```
 
-Use [Crontab Guru](https://crontab.guru/) to generate cron expressions.
+Or use VS Code's **Run and Debug** (F5).
 
-### Modify Categories
+## 🔧 Configuration
 
-Edit `ai_news_complete.py` and adjust the `articles` dictionary in `generate_comprehensive_digest()`.
+All configuration is managed through environment variables (see `src/ai_news_relay/config.py`):
 
-### Add More Sources
+| Variable                  | Required | Default | Description                             |
+| ------------------------- | -------- | ------- | --------------------------------------- |
+| `TELEGRAM_BOT_TOKEN`      | ✅       | -       | Your Telegram bot token from @BotFather |
+| `TELEGRAM_CHAT_ID`        | ✅       | -       | Your Telegram chat ID                   |
+| `MAX_ARTICLES_PER_SOURCE` | ❌       | 2       | Articles to fetch per source            |
+| `MAX_DIGEST_LENGTH`       | ❌       | 4090    | Maximum message length                  |
+| `LOG_LEVEL`               | ❌       | INFO    | Logging level                           |
 
-Add queries to the `queries` list in `search_ai_news()`.
+## 📰 News Sources
 
-## 📝 Logs & Monitoring
+### RSS Feeds
 
-### Execution Logs
-Location: `/workspace/logs/execution.log`
+- TechCrunch AI
+- MIT Technology Review AI
+- Wired AI
+- The Verge AI
+- VentureBeat AI
 
+### APIs
+
+- Hacker News (Algolia API)
+
+## 🤝 Development
+
+### Running Tests
+
+```bash
+pytest
 ```
-[2025-11-18 21:00:00 IST] SUCCESS - Message ID: 123
-[2025-11-19 21:00:00 IST] SUCCESS - Message ID: 124
+
+### Code Formatting
+
+```bash
+black src/ main.py
 ```
 
-### Backup Digests
-Location: `/workspace/summaries/ai_news_YYYYMMDD_HHMMSS.md`
+### Linting
 
-## 🐛 Troubleshooting
+```bash
+pylint src/ main.py
+```
 
-### Issue: Telegram delivery fails
-- Check bot token and chat ID are correct
-- Verify bot has permission to send messages to the chat
-- Check character limit (must be under 4096)
+## 🔐 Security
 
-### Issue: GitHub Action fails
-- Verify `ANTHROPIC_API_KEY` secret is set
-- Check Actions tab for detailed error logs
-- Ensure repository has Actions enabled
+- ✅ Credentials stored in environment variables
+- ✅ `.env` file excluded from git
+- ✅ GitHub Secrets for CI/CD
+- ✅ No hardcoded tokens
 
-### Issue: Character count too low/high
-- Adjust articles in `generate_comprehensive_digest()`
-- Current target: 4000+ chars, max 4090
+## 📅 Automation
 
-## 📜 License
+The GitHub Actions workflow (`.github/workflows/ai-news-daily.yml`) runs automatically:
+
+- **Schedule**: Daily at 9:00 PM IST (15:30 UTC)
+- **Manual**: Can be triggered from the Actions tab
+
+## 📝 License
 
 MIT License - Feel free to use and modify!
 
-## 🤝 Contributing
+## 🙏 Acknowledgments
 
-Contributions welcome! Please open an issue or PR.
+Built with:
 
-## 📧 Support
-
-For issues or questions, open a GitHub issue.
-
----
-
-**Last Updated**: November 18, 2025
-**Version**: 1.0.0
-**Status**: ✅ Production Ready
+- [Requests](https://requests.readthedocs.io/) - HTTP library
+- [Feedparser](https://feedparser.readthedocs.io/) - RSS/Atom parser
+- [Pydantic](https://docs.pydantic.dev/) - Data validation
+- [PyTZ](https://pythonhosted.org/pytz/) - Timezone support
