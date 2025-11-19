@@ -3,11 +3,13 @@
 Your AI News Relay Agent is ready to push to GitHub!
 
 ## Repository Details
+
 - **URL**: https://github.com/DilipReddy57/marph-ai-news.git
 - **Branch**: main
 - **Commit**: ✅ Ready (5 files, 584 lines)
 
 ## Files Ready to Push:
+
 1. `ai_news_complete.py` - Main script (13.5 KB)
 2. `.github/workflows/ai-news-daily.yml` - GitHub Actions workflow
 3. `README.md` - Complete documentation (5.5 KB)
@@ -51,8 +53,9 @@ git push -u origin main
 6. ✅ Test: Click **"AI News Daily Digest"** → **"Run workflow"**
 
 ## Schedule:
+
 - Automatically runs daily at **9:00 PM IST** (15:30 UTC)
-- Sends digest to Telegram chat ID: 939907290
+- Sends digest to Telegram chat ID: `your_chat_id_here`
 
 ---
 

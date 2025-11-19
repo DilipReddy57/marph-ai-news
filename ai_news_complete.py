@@ -363,10 +363,12 @@ def save_backup(summary_data):
     """Save digest to file for backup"""
     print("[4/5] Saving backup...")
 
-    os.makedirs("/workspace/summaries", exist_ok=True)
+    # Use relative path for portability
+    backup_dir = os.path.join(os.getcwd(), "summaries")
+    os.makedirs(backup_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filepath = f"/workspace/summaries/ai_news_{timestamp}.md"
+    filepath = os.path.join(backup_dir, f"ai_news_{timestamp}.md")
 
     with open(filepath, "w", encoding='utf-8') as f:
         f.write(summary_data["markdown_summary"])
@@ -378,10 +380,11 @@ def log_execution(status, details):
     """Log execution status"""
     print("[5/5] Logging execution...")
 
-    log_dir = "/workspace/logs"
+    # Use relative path for portability
+    log_dir = os.path.join(os.getcwd(), "logs")
     os.makedirs(log_dir, exist_ok=True)
 
-    log_file = f"{log_dir}/execution.log"
+    log_file = os.path.join(log_dir, "execution.log")
 
     timestamp = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S IST")
     log_entry = f"[{timestamp}] {status} - {details}\n"

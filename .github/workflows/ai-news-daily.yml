@@ -3,7 +3,7 @@ name: AI News Daily Digest
 on:
   schedule:
     # 15:30 UTC = 9:00 PM IST
-    - cron: '30 15 * * *'
+    - cron: "30 15 * * *"
 
   # Allow manual trigger
   workflow_dispatch:
@@ -19,11 +19,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
-          pip install pytz
+          pip install -r requirements.txt
 
       - name: Run AI News Collection
         env:
@@ -37,5 +37,5 @@ jobs:
         if: always()
         with:
           name: execution-logs
-          path: /workspace/logs/
+          path: logs/
           retention-days: 7

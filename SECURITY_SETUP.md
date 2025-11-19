@@ -9,12 +9,14 @@
 ## 🛡️ What Changed
 
 ### Before (INSECURE ❌):
+
 ```python
-TELEGRAM_BOT_TOKEN = "8283610283:AAHJqg9AexBYFm15v-eWV39Pe8wC8gKnQP8"  # PUBLIC!
-TELEGRAM_CHAT_ID = "939907290"  # PUBLIC!
+TELEGRAM_BOT_TOKEN = "your_old_token_here"  # PUBLIC!
+TELEGRAM_CHAT_ID = "your_chat_id_here"  # PUBLIC!
 ```
 
 ### After (SECURE ✅):
+
 ```python
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")  # From environment
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")      # From environment
@@ -43,16 +45,19 @@ Your old token is compromised (it was in public repo). You MUST create a new one
 **Add these TWO secrets:**
 
 **Secret 1:**
+
 - **Name**: `TELEGRAM_BOT_TOKEN`
 - **Value**: `your_new_bot_token_here` (from @BotFather)
 
 **Secret 2:**
+
 - **Name**: `TELEGRAM_CHAT_ID`
-- **Value**: `939907290`
+- **Value**: `your_chat_id_here`
 
 ### Step 3: Verify Setup
 
 After adding secrets:
+
 1. Go to **Actions** tab
 2. Click **"Run workflow"**
 3. Check if it completes successfully
@@ -65,12 +70,14 @@ After adding secrets:
 ### Option 1: Using .env file (Recommended)
 
 1. **Create `.env` file** in project root:
+
 ```bash
 TELEGRAM_BOT_TOKEN=your_new_token_here
 TELEGRAM_CHAT_ID=939907290
 ```
 
 2. **Load and run**:
+
 ```bash
 # Load environment variables
 export $(cat .env | xargs)
@@ -90,11 +97,13 @@ python ai_news_complete.py
 ### Option 3: Python-dotenv (Advanced)
 
 Install package:
+
 ```bash
 pip install python-dotenv
 ```
 
 Add to top of `ai_news_complete.py`:
+
 ```python
 from dotenv import load_dotenv
 load_dotenv()  # Load .env file
@@ -105,6 +114,7 @@ load_dotenv()  # Load .env file
 ## 🔒 Security Best Practices
 
 ### ✅ DO:
+
 - Store tokens in GitHub Secrets for CI/CD
 - Use `.env` files for local development (never commit!)
 - Revoke compromised tokens immediately
@@ -112,6 +122,7 @@ load_dotenv()  # Load .env file
 - Regularly rotate tokens (every 3-6 months)
 
 ### ❌ DON'T:
+
 - Hard-code tokens in source code
 - Commit `.env` files to git
 - Share tokens in chat/email
@@ -123,6 +134,7 @@ load_dotenv()  # Load .env file
 ## 🚨 What If Token is Compromised?
 
 If someone gets your bot token, they can:
+
 - Send messages to any chat the bot has access to
 - Impersonate your bot
 - Spam users
@@ -158,12 +170,14 @@ After following this guide:
 ## ✅ Verification
 
 After setup, your script will show:
+
 ```
 ✅ Token loaded from environment
 ✅ Chat ID loaded from environment
 ```
 
 If missing:
+
 ```
 ❌ ERROR: Missing required environment variables!
 ```

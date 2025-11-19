@@ -18,7 +18,7 @@ I've fixed the code, but you need to take these actions NOW:
 8. **Get NEW token** (it will be shown once)
 9. **Copy and save it securely**
 
-**Your old token**: `8283610283:AAHJqg9AexBYFm15v-eWV39Pe8wC8gKnQP8` ❌ (COMPROMISED)
+**Your old token**: `your_old_token_here` ❌ (COMPROMISED)
 
 ---
 
@@ -29,6 +29,7 @@ I've fixed the code, but you need to take these actions NOW:
 2. **Click**: "New repository secret"
 
 3. **Add Secret #1**:
+
    - Name: `TELEGRAM_BOT_TOKEN`
    - Value: `<your_new_token_from_botfather>`
    - Click "Add secret"
@@ -37,7 +38,7 @@ I've fixed the code, but you need to take these actions NOW:
 
 5. **Add Secret #2**:
    - Name: `TELEGRAM_CHAT_ID`
-   - Value: `939907290`
+   - Value: `your_chat_id_here`
    - Click "Add secret"
 
 ---
@@ -77,6 +78,7 @@ If you get an error, check the workflow logs for details.
 ## 🔒 Why This Matters
 
 With your old token publicly visible, anyone could:
+
 - Send messages to your Telegram chat
 - Impersonate your bot
 - Spam your contacts
@@ -88,14 +90,14 @@ With your old token publicly visible, anyone could:
 
 ## 📝 Summary
 
-| Task | Status | Action |
-|------|--------|--------|
-| Revoke old token | ⏳ TODO | Message @BotFather |
-| Create new token | ⏳ TODO | Via @BotFather |
-| Add GitHub Secret: BOT_TOKEN | ⏳ TODO | GitHub Settings |
-| Add GitHub Secret: CHAT_ID | ⏳ TODO | GitHub Settings |
-| Enable GitHub Actions | ⏳ TODO | Actions tab |
-| Test workflow | ⏳ TODO | Run workflow button |
+| Task                         | Status  | Action              |
+| ---------------------------- | ------- | ------------------- |
+| Revoke old token             | ⏳ TODO | Message @BotFather  |
+| Create new token             | ⏳ TODO | Via @BotFather      |
+| Add GitHub Secret: BOT_TOKEN | ⏳ TODO | GitHub Settings     |
+| Add GitHub Secret: CHAT_ID   | ⏳ TODO | GitHub Settings     |
+| Enable GitHub Actions        | ⏳ TODO | Actions tab         |
+| Test workflow                | ⏳ TODO | Run workflow button |
 
 ---
 
